@@ -12,6 +12,8 @@ namespace win_melody
 {
     public partial class fMain : Form
     {
+        fParam fp = new fParam();
+
         public fMain()
         {
             InitializeComponent();
@@ -20,6 +22,12 @@ namespace win_melody
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnParams_Click(object sender, EventArgs e)
+        {
+            
+            fp.ShowDialog();
         }
     }
 }
