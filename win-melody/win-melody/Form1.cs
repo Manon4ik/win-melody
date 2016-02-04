@@ -13,6 +13,8 @@ namespace win_melody
     public partial class fMain : Form
     {
         fParam fp = new fParam();
+        fGame fg = new fGame();
+
 
         public fMain()
         {
@@ -28,6 +30,11 @@ namespace win_melody
         {
             
             fp.ShowDialog();
+        }
+
+        private void btnPlay_Click(object sender, EventArgs e)
+        {
+            fg.ShowDialog();
         }
     }
 }
