@@ -20,6 +20,7 @@ namespace win_melody
 
         private void btnOk_Click(object sender, EventArgs e)
         {
+            Victorina.WriteParam();
             this.Hide();
         }
 

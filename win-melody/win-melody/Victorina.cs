@@ -27,6 +27,45 @@ namespace win_melody
 
         static string regKeyName = "Software\\MyCompanyName\\Victorina";
 
+        public static void WriteParam()
+        {
+            RegistryKey rk = null;
+            try
+            {
+                rk = Registry.CurrentUser.CreateSubKey(regKeyName);
+                if (rk == null) return;
+                rk.SetValue("LastFolder", lastFolder);
+                rk.SetValue("Random", randomStart);
+                rk.SetValue("GameDuration", gameDuration);
+                rk.SetValue("MisucDuration", musicDuration);
+                rk.SetValue("AllDirectories", allDirectories);
 
+            }
+            finally
+            {
+                if (rk != null) rk.Close();
+            }
+        }
+
+        public static void ReadParam()
+        {
+            RegistryKey rk = null;
+            try
+            {
+                rk = Registry.CurrentUser.OpenSubKey(regKeyName);
+                if (rk != null)
+                {
+                    lastFolder = (string)rk.GetValue("LastFolder");
+                    gameDuration = (int)rk.GetValue("GameDuration");
+                    randomStart = Convert.ToBoolean(rk.GetValue("Random", false));
+                    musicDuration = (int)rk.GetValue("MusicDuration");
+                    allDirectories = Convert.ToBoolean(rk.GetValue("AllDirectories", false));
+                }
+            }
+            finally
+            {
+                if (rk != null) rk.Close();
+            }
+        }
     }
 }
