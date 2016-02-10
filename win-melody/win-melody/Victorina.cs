@@ -20,9 +20,17 @@ namespace win_melody
 
         static public void ReadMusic()
         {
-            string[] music_list = Directory.GetFiles(lastFolder, "*.mp3", allDirectories ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly);
-            list.Clear();
-            list.AddRange(music_list);
+            try
+            {
+                string[] music_list = Directory.GetFiles(lastFolder, "*.mp3", allDirectories ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly);
+                list.Clear();
+                list.AddRange(music_list);
+            }
+            catch
+            {
+
+            }
+            
         }
 
         static string regKeyName = "Software\\MyCompanyName\\Victorina";
@@ -58,7 +66,7 @@ namespace win_melody
                     lastFolder = (string)rk.GetValue("LastFolder");
                     gameDuration = (int)rk.GetValue("GameDuration");
                     randomStart = Convert.ToBoolean(rk.GetValue("Random", false));
-                    musicDuration = (int)rk.GetValue("MusicDuration");
+                    musicDuration = (int)rk.GetValue("MisucDuration");
                     allDirectories = Convert.ToBoolean(rk.GetValue("AllDirectories", false));
                 }
             }

@@ -76,6 +76,7 @@
             this.Controls.Add(this.btnPlay);
             this.Name = "fMain";
             this.Text = "Угадай мелодию";
+            this.Load += new System.EventHandler(this.fMain_Load);
             this.ResumeLayout(false);
 
         }
