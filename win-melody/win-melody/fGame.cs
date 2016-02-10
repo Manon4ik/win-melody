@@ -103,7 +103,9 @@ namespace win_melody
             if (e.KeyData == Keys.A)
             {
                 GamePause();
-                if (MessageBox.Show("Правельный ответ?", "Игрок 1", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                fMessage fm = new fMessage();
+                fm.lblMessage.Text = "Игрок 1";
+                if (fm.ShowDialog() == DialogResult.Yes)
                 {
                     lblCounter1.Text = Convert.ToString(Convert.ToInt32(lblCounter1.Text) + 1);
                     MakeMusic();
@@ -113,13 +115,22 @@ namespace win_melody
             if (e.KeyData == Keys.P)
             {
                 GamePause();
-                if (MessageBox.Show("Правельный ответ?", "Игрок 2", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                fMessage fm = new fMessage();
+                fm.lblMessage.Text = "Игрок 2";
+                if (fm.ShowDialog() == DialogResult.Yes)
                 {
                     lblCounter2.Text = Convert.ToString(Convert.ToInt32(lblCounter2.Text) + 1);
                     MakeMusic();
                 }
                 GamePlay();
             }
+        }
+
+        private void WMP_OpenStateChange(object sender, AxWMPLib._WMPOCXEvents_OpenStateChangeEvent e)
+        {
+            if (Victorina.randomStart == true)
+                if (WMP.openState == WMPLib.WMPOpenState.wmposMediaOpen)
+                    WMP.Ctlcontrols.currentPosition = rnd.Next(0, (int)WMP.currentMedia.duration / 2);
         }
     }
 }
