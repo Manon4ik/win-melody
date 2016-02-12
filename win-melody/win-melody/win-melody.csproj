@@ -127,7 +127,12 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\End_time_sound.wav" />
+    <Content Include="Resources\End_time_sound.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\WavLibraryNet_Windows10_Ringin.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
