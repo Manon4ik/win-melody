@@ -16,6 +16,8 @@ namespace win_melody
 
         int musicDuration = Victorina.musicDuration;
 
+        bool[] players = new bool[2];
+
         public fGame()
         {
             InitializeComponent();
@@ -32,6 +34,8 @@ namespace win_melody
                 //WMP.Ctlcontrols.play();
                 Victorina.list.RemoveAt(n);
                 lblMelodyCount.Text = Victorina.list.Count.ToString();
+                players[0] = false;
+                players[1] = false;
             }
             
         }
@@ -100,11 +104,13 @@ namespace win_melody
 
         private void fGame_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyData == Keys.A)
+            if (timer1.Enabled == false) return; // выход с ф-ции если счетчик считает (ждем ответ)
+            if (players[0] == false && e.KeyData == Keys.A)
             {
                 GamePause();
                 fMessage fm = new fMessage();
                 fm.lblMessage.Text = "Игрок 1";
+                players[0] = true;
                 if (fm.ShowDialog() == DialogResult.Yes)
                 {
                     lblCounter1.Text = Convert.ToString(Convert.ToInt32(lblCounter1.Text) + 1);
@@ -112,11 +118,12 @@ namespace win_melody
                 }
                 GamePlay();
             }
-            if (e.KeyData == Keys.P)
+            if (players[1] == false &&  e.KeyData == Keys.P)
             {
                 GamePause();
                 fMessage fm = new fMessage();
                 fm.lblMessage.Text = "Игрок 2";
+                players[1] = true;
                 if (fm.ShowDialog() == DialogResult.Yes)
                 {
                     lblCounter2.Text = Convert.ToString(Convert.ToInt32(lblCounter2.Text) + 1);
