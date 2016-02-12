@@ -45,7 +45,9 @@ namespace win_melody
 
         private void lblShowAnswer_Click(object sender, EventArgs e)
         {
-            lblShowAnswer.Text = Victorina.answer;
+            var mp3file = TagLib.File.Create(Victorina.answer);
+
+            lblShowAnswer.Text = mp3file.Tag.FirstAlbumArtist + " " + mp3file.Tag.Title;
         }
     }
 }
