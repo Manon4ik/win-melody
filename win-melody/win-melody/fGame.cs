@@ -31,13 +31,14 @@ namespace win_melody
                 musicDuration = Victorina.musicDuration;
                 int n = rnd.Next(0, Victorina.list.Count);
                 WMP.URL = Victorina.list[n];
+                Victorina.answer = System.IO.Path.GetFileNameWithoutExtension(WMP.URL);
                 //WMP.Ctlcontrols.play();
                 Victorina.list.RemoveAt(n);
                 lblMelodyCount.Text = Victorina.list.Count.ToString();
                 players[0] = false;
                 players[1] = false;
             }
-            
+
         }
 
         private void btnNext_Click(object sender, EventArgs e)
@@ -118,7 +119,7 @@ namespace win_melody
                 }
                 GamePlay();
             }
-            if (players[1] == false &&  e.KeyData == Keys.P)
+            if (players[1] == false && e.KeyData == Keys.P)
             {
                 GamePause();
                 fMessage fm = new fMessage();
@@ -138,6 +139,12 @@ namespace win_melody
             if (Victorina.randomStart == true)
                 if (WMP.openState == WMPLib.WMPOpenState.wmposMediaOpen)
                     WMP.Ctlcontrols.currentPosition = rnd.Next(0, (int)WMP.currentMedia.duration / 2);
+        }
+
+        private void lblCounter1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left) (sender as Label).Text = Convert.ToString(Convert.ToInt32((sender as Label).Text) + 1);
+            if (e.Button == MouseButtons.Right) (sender as Label).Text = Convert.ToString(Convert.ToInt32((sender as Label).Text) - 1);
         }
     }
 }

@@ -33,14 +33,19 @@ namespace win_melody
             if (timeAnswer == 0)
             {
                 timer1.Stop();
-                SoundPlayer sp = new SoundPlayer("Resources\\WavLibraryNet_Windows10_Ringin.wav");
-                sp.Play();
+                //SoundPlayer sp = new SoundPlayer("Resources\\WavLibraryNet_Windows10_Ringin.wav");
+                //sp.Play();
             }
         }
 
         private void fMessage_FormClosed(object sender, FormClosedEventArgs e)
         {
             timer1.Stop();
+        }
+
+        private void lblShowAnswer_Click(object sender, EventArgs e)
+        {
+            lblShowAnswer.Text = Victorina.answer;
         }
     }
 }
